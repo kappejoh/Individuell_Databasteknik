@@ -12,15 +12,21 @@ public class ProjectEntity
     public DateTime? EndDate { get; set; }
 
     public int StatusTypeId { get; set; }
-
     public StatusTypeEntity StatusType { get; set; } = null!;
+
     public int CustomerId { get; set; }
     public CustomerEntity Customer { get; set; } = null!;
 
     public int ProjectManagerId { get; set; }
     public UserEntity ProjectManager { get; set; } = null!;
 
-    public int ArticleId { get; set; }
-    public ArticleEntity Article { get; set; } = null!;
+    public int ServiceId { get; set; }
+    public ServiceEntity Service { get; set; } = null!;
+
+    public int ProjectTypeId { get; set; }
+    public ProjectTypeEntity ProjectType { get; set; } = null!;
+
+    public ICollection<TaskAssignmentEntity> TaskAssignments { get; set; } = [];
+    public ICollection<InvoiceEntity> Invoices { get; set; } = [];
 
 }

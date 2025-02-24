@@ -10,7 +10,7 @@ public class CustomerRepository(DataContext context) : BaseRepository<CustomerEn
 {
     public override async Task<CustomerEntity?> GetAsync(Expression<Func<CustomerEntity, bool>> expression)
     {
-        var entity = await _db
+        var entity = await _context.Customers
             .Include(x => x.Projects)
             .FirstOrDefaultAsync(expression);
         return entity;

@@ -1,8 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Data.Entities;
+using System.ComponentModel.DataAnnotations;
 
-namespace Data.Entities;
+namespace Business.Models;
 
-public class UserEntity
+public class User
 {
     [Key]
     public int Id { get; set; }
@@ -15,10 +16,8 @@ public class UserEntity
 
     public DateTime Created { get; set; }
     public DateTime Modified { get; set; }
-    public int RoleId { get; set; }
-    public RoleEntity Role { get; set; } = null!;
+    public Role? Role { get; set; } = null!;
 
     public ICollection<UserAddressEntity> UserAddresses { get; set; } = [];
     public ICollection<ProjectEntity> Projects { get; set; } = [];
 }
-
