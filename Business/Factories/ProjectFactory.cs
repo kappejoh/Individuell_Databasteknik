@@ -60,7 +60,7 @@ public static class ProjectFactory
             return null;
         }
 
-    };
+    }
 
 
 }
