@@ -14,22 +14,20 @@ public class DataContext : DbContext
     }
 
     public DbSet<AddressTypeEntity> AddressTypes { get; set; }
-    public DbSet<ArticleEntity> Articles { get; set; }
-    public DbSet<ArticlePriceListEntity> ArticlePriceLists { get; set; }
     public DbSet<CustomerAddressEntity> CustomerAddresses { get; set; }
     public DbSet<CustomerEntity> Customers { get; set; }
-    public DbSet<EmployeeEntity> Employee { get; set; }
+    public DbSet<EmployeeEntity> Employees { get; set; }
     public DbSet<InvoiceEntity> Invoices { get; set; }
     public DbSet<PostalCodeEntity> PostalCodes { get; set; }
     public DbSet<ProjectEntity> Projects { get; set; }
+    public DbSet<ProjectTypeEntity> ProjectTypes { get; set; }
     public DbSet<RoleEntity> Roles { get; set; }
     public DbSet<ServiceEntity> Services { get; set; }
-    public DbSet<StatusEntity> StatusTypes { get; set; }
+    public DbSet<StatusEntity> Statuses { get; set; }
     public DbSet<TaskAssignmentEntity> TaskAssignments { get; set; }
     public DbSet<TasksEntity> Tasks { get; set; }
     public DbSet<UserAddressEntity> UserAddresses { get; set; }
     public DbSet<UserEntity> Users { get; set; }
-    public DbSet<UserRoleEntity> UserRoles { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -62,19 +60,15 @@ public class DataContext : DbContext
             .HasForeignKey(x => x.CustomerId)
             .OnDelete(DeleteBehavior.Cascade);
 
-        modelBuilder.Entity<UserRoleEntity>()
-            .HasKey(x => new { x.UserId, x.RoleId });
+        modelBuilder.Entity<UserEntity>()
+            .HasIndex(u => u.Email)
+            .IsUnique();
 
-        modelBuilder.Entity<UserRoleEntity>()
-            .HasOne(x => x.User)
+        modelBuilder.Entity<UserEntity>()
+            .HasOne(u => u.Role)
             .WithMany()
-            .HasForeignKey(x => x.UserId)
+            .HasForeignKey(u => u.RoleId)
             .OnDelete(DeleteBehavior.Restrict);
 
-        modelBuilder.Entity<UserRoleEntity>()
-            .HasOne(x => x.Role)
-            .WithMany()
-            .HasForeignKey(x => x.RoleId)
-            .OnDelete(DeleteBehavior.Restrict);
     }
 }

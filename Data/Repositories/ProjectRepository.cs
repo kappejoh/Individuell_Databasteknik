@@ -18,7 +18,7 @@ public class ProjectRepository(DataContext context) : BaseRepository<ProjectEnti
                 .Include(x => x.Customer)
                 .Include(x => x.ProjectManager)
                 .Include(x => x.ProjectType)
-                .Include(x => x.StatusType)
+                .Include(x => x.Status)
                 .ToListAsync();
             return entities;
         }
@@ -37,7 +37,7 @@ public class ProjectRepository(DataContext context) : BaseRepository<ProjectEnti
                 .Include(x => x.Customer)
                 .Include(x => x.ProjectManager)
                 .Include(x => x.ProjectType)
-                .Include(x => x.StatusType)
+                .Include(x => x.Status)
                 .FirstOrDefaultAsync();
             return entity;
         }
