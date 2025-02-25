@@ -12,8 +12,7 @@ public class CustomerService(ICustomerRepository customerRepository) : ICustomer
     public async Task<IEnumerable<Customer?>> GetCustomersAsync()
     {
         var entities = await _customerRepository.GetAllAsync();
-        var customers = entities.Select(CustomerFactory.Create);
-        return customers;
+        return entities.Select(CustomerFactory.Map);   
     }
 
 

@@ -2,9 +2,9 @@
 
 namespace Business.Models;
 
-public class StatusType
+public class Status
 {
     [Key]
     public int Id { get; set; }
-    public string StatusTypeValue { get; set; } = null!;
+    public string StatusName { get; set; } = null!;
 }

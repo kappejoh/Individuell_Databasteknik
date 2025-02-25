@@ -7,7 +7,7 @@ public class TaskAssignmentEntity
     public ProjectEntity Project { get; set; } = null!;
 
     public int TaskId { get; set; }
-    public TaskEntity Task { get; set; } = null!;
+    public TasksEntity Task { get; set; } = null!;
 
     public int EmployeeId { get; set; }
     public EmployeeEntity Employee { get; set; } = null!;

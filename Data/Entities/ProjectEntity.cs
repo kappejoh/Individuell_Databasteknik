@@ -11,8 +11,8 @@ public class ProjectEntity
     public DateTime StartDate { get; set; }
     public DateTime? EndDate { get; set; }
 
-    public int StatusTypeId { get; set; }
-    public StatusTypeEntity StatusType { get; set; } = null!;
+    public int StatusNameId { get; set; }
+    public StatusEntity Status { get; set; } = null!;
 
     public int CustomerId { get; set; }
     public CustomerEntity Customer { get; set; } = null!;

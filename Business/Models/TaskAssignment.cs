@@ -7,7 +7,7 @@ public class TaskAssignment
     public int Id { get; set; }
     public Project? Project { get; set; } = null!;
 
-    public Task? Task { get; set; } = null!;
+    public Tasks? Task { get; set; } = null!;
 
     public Employee? Employee { get; set; } = null!;
 

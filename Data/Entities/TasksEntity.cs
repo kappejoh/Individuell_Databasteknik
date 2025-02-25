@@ -1,6 +1,6 @@
 ﻿namespace Data.Entities;
 
-public class TaskEntity
+public class TasksEntity
 {
     public int Id { get; set; }
     public string TaskTitle { get; set; } = null!;

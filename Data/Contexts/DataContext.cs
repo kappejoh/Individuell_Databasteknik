@@ -24,9 +24,9 @@ public class DataContext : DbContext
     public DbSet<ProjectEntity> Projects { get; set; }
     public DbSet<RoleEntity> Roles { get; set; }
     public DbSet<ServiceEntity> Services { get; set; }
-    public DbSet<StatusTypeEntity> StatusTypes { get; set; }
+    public DbSet<StatusEntity> StatusTypes { get; set; }
     public DbSet<TaskAssignmentEntity> TaskAssignments { get; set; }
-    public DbSet<TaskEntity> Tasks { get; set; }
+    public DbSet<TasksEntity> Tasks { get; set; }
     public DbSet<UserAddressEntity> UserAddresses { get; set; }
     public DbSet<UserEntity> Users { get; set; }
     public DbSet<UserRoleEntity> UserRoles { get; set; }
