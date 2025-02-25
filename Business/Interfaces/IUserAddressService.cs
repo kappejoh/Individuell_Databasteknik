@@ -4,6 +4,6 @@ namespace Business.Interfaces
 {
     public interface IUserAddressService
     {
-        Task<IEnumerable<UserAddress?>> GetUserAddressesTypeAsync();
+        Task<IEnumerable<UserAddress?>> GetUserAddressesAsync();
     }
 }

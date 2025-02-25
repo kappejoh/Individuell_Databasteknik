@@ -9,7 +9,7 @@ public class UserAddressService(IUserAddressRepository userAddressRepository) : 
 {
     private readonly IUserAddressRepository _userAddressRepository = userAddressRepository;
 
-    public async Task<IEnumerable<UserAddress?>> GetUserAddressesTypeAsync()
+    public async Task<IEnumerable<UserAddress?>> GetUserAddressesAsync()
     {
         var entities = await _userAddressRepository.GetAllAsync();
         return entities.Select(UserAddressFactory.Map);

@@ -4,6 +4,6 @@ namespace Business.Interfaces
 {
     public interface IAddressTypeService
     {
-        Task<IEnumerable<AddressType?>> GetAddressesTypeAsync();
+        Task<IEnumerable<AddressType?>> GetAddressTypesAsync();
     }
 }

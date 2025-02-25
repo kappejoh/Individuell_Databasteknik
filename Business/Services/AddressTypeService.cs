@@ -9,7 +9,7 @@ public class AddressTypeService(IAddressTypeRepository addressTypeRepository) : 
 {
     private readonly IAddressTypeRepository _addressTypeRepository = addressTypeRepository;
 
-    public async Task<IEnumerable<AddressType?>> GetAddressesTypeAsync()
+    public async Task<IEnumerable<AddressType?>> GetAddressTypesAsync()
     {
         var entities = await _addressTypeRepository.GetAllAsync();
         return entities.Select(AddressTypeFactory.Map);

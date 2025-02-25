@@ -2,7 +2,7 @@
 
 namespace Business.Interfaces
 {
-    public interface IInvoicesService
+    public interface IInvoiceService
     {
         Task<IEnumerable<Invoice?>> GetInvoicesAsync();
     }

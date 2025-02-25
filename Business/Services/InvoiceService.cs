@@ -6,7 +6,7 @@ using Data.Repositories;
 
 namespace Business.Services
 {
-    public class InvoiceService(IInvoiceRepository invoiceRepository) : IInvoicesService
+    public class InvoiceService(IInvoiceRepository invoiceRepository) : IInvoiceService
     {
         private readonly IInvoiceRepository _invoiceRepository = invoiceRepository;
 
