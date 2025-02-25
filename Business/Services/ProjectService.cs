@@ -95,9 +95,4 @@ public class ProjectService(IProjectRepository projectRepository, ICustomerRepos
             return false;
         }
     }
-
-    Task<bool> IProjectService.CreateProjectAsync(ProjectRegistrationForm form)
-    {
-        throw new NotImplementedException();
-    }
 }

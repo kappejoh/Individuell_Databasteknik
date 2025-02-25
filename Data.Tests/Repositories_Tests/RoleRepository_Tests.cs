@@ -1,4 +1,7 @@
 ﻿using Data.Contexts;
+using Data.Interfaces;
+using Data.Repositories;
+using Data.Tests.SeedData;
 using Microsoft.EntityFrameworkCore;
 
 namespace Data.Tests.Repositories_Tests;
@@ -15,5 +18,22 @@ public class RoleRepository_Tests
         context.Database.EnsureCreated();
 
         return context;
+    }
+
+    [Fact]
+    public async Task GetRolesAsync_ShouldReturnAllRoles()
+    {
+        // Arrange
+        var context = GetDataContext();
+        context.Roles.AddRange(TestData.RoleEntities);
+        await context.SaveChangesAsync();
+
+        IRoleRepository repository = new RoleRepository(context);
+
+        // Act
+        var result = await repository.GetAllAsync();
+
+        // Assert
+        Assert.Equal(TestData.RoleEntities.Length, result.Count());
     }
 }

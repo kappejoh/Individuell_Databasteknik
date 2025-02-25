@@ -54,14 +54,15 @@ public static class TestData
 
     public static readonly PostalCodeEntity[] PostalCodeEntities =
     [
-        new PostalCodeEntity { PostalCode = "12345", City = "Gävle" },
-        new PostalCodeEntity { PostalCode = "23456", City = "Umea" },
-        new PostalCodeEntity { PostalCode = "34567", City = "Varberg"}
+        new PostalCodeEntity { Id = 1, PostalCode = "12345", City = "Gävle" },
+        new PostalCodeEntity { Id = 2, PostalCode = "23456", City = "Umea" },
+        new PostalCodeEntity { Id = 3,  PostalCode = "34567", City = "Varberg"}
     ];
 
     public static readonly ProjectEntity[] ProjectEntities =
     [
         new ProjectEntity {
+        Id = 1,
         ProjectName = "Databasteknik",
         Description = "Kurs i Databaser",
         StartDate = new DateTime(2025, 02, 03),
@@ -73,7 +74,7 @@ public static class TestData
         }
     ];
 
-    public static readonly ProjectTypeEntity[] ProjectTypesEntities =
+    public static readonly ProjectTypeEntity[] ProjectTypeEntities =
     [
         new ProjectTypeEntity { Id = 1, TypeName = "Konsultuppdrag", Price = 100, PricingUnit = "Tim" },
         new ProjectTypeEntity { Id = 2, TypeName = "Produktutveckling", Price = 100, PricingUnit = "Tim" },
