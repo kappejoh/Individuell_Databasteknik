@@ -70,9 +70,11 @@ public static class TestData
         StatusNameId = 1,
         CustomerId = 1,
         ProjectManagerId = 1,
-        ProjectTypeId = 1
+        ProjectTypeId = 1,
+        ServiceId = 1
         }
     ];
+
 
     public static readonly ProjectTypeEntity[] ProjectTypeEntities =
     [

@@ -25,7 +25,7 @@ public static class DataContextSeeder
         context.Employees.AddRange(TestData.EmployeeEntities);
         context.Invoices.AddRange(TestData.InvoiceEntities);
         context.PostalCodes.AddRange(TestData.PostalCodeEntities);
-        context.ProjectTypes.AddRange(TestData.ProjectTypesEntities);
+        context.ProjectTypes.AddRange(TestData.ProjectTypeEntities);
         context.Roles.AddRange(TestData.RoleEntities);
         context.Services.AddRange(TestData.ServiceEntities);
         context.Statuses.AddRange(TestData.StatusEntities);
@@ -45,7 +45,7 @@ public static class DataContextSeeder
         context.Invoices.AddRange(TestData.InvoiceEntities);
         context.PostalCodes.AddRange(TestData.PostalCodeEntities);
         context.Projects.AddRange(TestData.ProjectEntities);
-        context.ProjectTypes.AddRange(TestData.ProjectTypesEntities);
+        context.ProjectTypes.AddRange(TestData.ProjectTypeEntities);
         context.Roles.AddRange(TestData.RoleEntities);
         context.Services.AddRange(TestData.ServiceEntities);
         context.Statuses.AddRange(TestData.StatusEntities);
