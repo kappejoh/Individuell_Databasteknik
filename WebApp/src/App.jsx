@@ -1,18 +1,17 @@
 import './App.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import Projects from './Views/Projects'
-import CreateProject from './Views/CreateProject'
+import Header from './Components/Header'
+import Footer from './Components/Footer'
+import Main from './Components/Main'
 
 function App() {
 
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/projects" element={<Projects />} ></Route>
-        <Route path="/projects/create" element={<CreateProject />} ></Route>
-        <Route path="/" element={<CreateProject />} ></Route>
-      </Routes>
-    </BrowserRouter>
+    <div className='wrapper'>
+      <Header></Header>
+      <Main></Main>
+      <Footer></Footer>
+    </div>
   )
 }
 
