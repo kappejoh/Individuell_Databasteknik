@@ -12,7 +12,7 @@ public class UserAddressEntity
     public AddressTypeEntity AddressType { get; set; } = null!;
     public string AddressLine_1 { get; set; } = null!;
     public string? AddressLine_2 { get; set; }
-    public string PostalCodeId { get; set; } = null!;
+    public int PostalCodeId { get; set; }
     public PostalCodeEntity PostalCode { get; set; } = null!;
 }
 

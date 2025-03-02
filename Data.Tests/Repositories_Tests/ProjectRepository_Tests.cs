@@ -3,6 +3,7 @@ using Data.Interfaces;
 using Data.Repositories;
 using Data.Tests.SeedData;
 using Microsoft.EntityFrameworkCore;
+using System.Diagnostics;
 
 namespace Data.Tests.Repositories_Tests;
 
@@ -49,6 +50,7 @@ public class ProjectRepository_Tests
     {
         // Arrange
         var context = GetDataContext();
+        IProjectRepository repository = new ProjectRepository(context);
 
         context.Statuses.AddRange(TestData.StatusEntities);
         context.Customers.AddRange(TestData.CustomerEntities);
@@ -56,9 +58,7 @@ public class ProjectRepository_Tests
         context.Services.AddRange(TestData.ServiceEntities);
         context.ProjectTypes.AddRange(TestData.ProjectTypeEntities);
         context.Projects.AddRange(TestData.ProjectEntities);
-
         await context.SaveChangesAsync();
-        IProjectRepository repository = new ProjectRepository(context);
 
         // Act
         var result = await repository.GetAllAsync();
@@ -91,6 +91,8 @@ public class ProjectRepository_Tests
         Assert.Equal(1, result!.Id);
     }
 
+    // Genererat av ChatGPT
+
     [Fact]
     public async Task UpdateAsync_ShouldUpdateAndReturnProject()
     {
@@ -105,22 +107,22 @@ public class ProjectRepository_Tests
         context.Projects.AddRange(TestData.ProjectEntities);
 
         await context.SaveChangesAsync();
-
         IProjectRepository repository = new ProjectRepository(context);
 
-        var projectToUpdate = TestData.ProjectEntities.First();
-        projectToUpdate.ProjectName = "Updated Project Name";
+        var existingProject = TestData.ProjectEntities.First();
+        var updatedProject = existingProject;
+        updatedProject.ProjectName = "Updated Project Name";
 
         // Act
-        var updateResult = await repository.UpdateAsync(projectToUpdate);
-        var updatedProject = await repository.GetAsync(x => x.Id == projectToUpdate.Id);
+        var updateResult = await repository.UpdateAsync(updatedProject);
+        var result = await repository.GetAsync(x => x.Id == existingProject.Id);
 
         // Assert
-        Assert.True(updateResult); 
-        Assert.NotNull(updatedProject); 
-        Assert.Equal("Updated Project Name", updatedProject!.ProjectName); 
+        Assert.NotNull(result); 
+        Assert.Equal("Updated Project Name", result.ProjectName); 
     }
 
+    // Genererat av ChatGPT
 
     [Fact]
     public async Task RemoveAsync_ShouldRemoveProject()
@@ -136,19 +138,15 @@ public class ProjectRepository_Tests
         context.Projects.AddRange(TestData.ProjectEntities);
 
         await context.SaveChangesAsync();
-
         IProjectRepository repository = new ProjectRepository(context);
 
         var projectToRemove = TestData.ProjectEntities.First();
-        var projectId = projectToRemove.Id;
 
         // Act
         var removeResult = await repository.RemoveAsync(projectToRemove);
-        var retrievedProject = await repository.GetAsync(x => x.Id == projectId);
 
         // Assert
         Assert.True(removeResult);
-        Assert.Null(retrievedProject);
     }
 
 

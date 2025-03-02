@@ -32,6 +32,36 @@ public class DataContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         // Hjälp från ChatGTP, främst med OnDelete-behavior
+        modelBuilder.Entity<ProjectEntity>()
+            .HasOne(p => p.Customer)
+            .WithMany(c => c.Projects)
+            .HasForeignKey(p => p.CustomerId)
+            .OnDelete(DeleteBehavior.Restrict);
+
+        modelBuilder.Entity<ProjectEntity>()
+            .HasOne(p => p.Status)
+            .WithMany()
+            .HasForeignKey(p => p.StatusId)
+            .OnDelete(DeleteBehavior.Restrict);
+
+        modelBuilder.Entity<ProjectEntity>()
+            .HasOne(p => p.ProjectManager)
+            .WithMany()
+            .HasForeignKey(p => p.ProjectManagerId)
+            .OnDelete(DeleteBehavior.Restrict);
+
+        modelBuilder.Entity<ProjectEntity>()
+            .HasOne(p => p.Service)
+            .WithMany()
+            .HasForeignKey(p => p.ServiceId)
+            .OnDelete(DeleteBehavior.Restrict);
+
+        modelBuilder.Entity<ProjectEntity>()
+            .HasOne(p => p.ProjectType)
+            .WithMany()
+            .HasForeignKey(p => p.ProjectTypeId)
+            .OnDelete(DeleteBehavior.Restrict); 
+
 
         modelBuilder.Entity<TaskAssignmentEntity>()
             .HasKey(x => x.Id);
@@ -50,7 +80,7 @@ public class DataContext : DbContext
 
         modelBuilder.Entity<InvoiceEntity>()
             .HasOne(x => x.Project)
-            .WithMany()
+            .WithMany(x => x.Invoices)
             .HasForeignKey(x => x.ProjectId)
             .OnDelete(DeleteBehavior.Restrict);
 
@@ -69,6 +99,13 @@ public class DataContext : DbContext
             .WithMany()
             .HasForeignKey(u => u.RoleId)
             .OnDelete(DeleteBehavior.Restrict);
+
+        modelBuilder.Entity<UserAddressEntity>()
+            .HasOne(u => u.PostalCode)
+            .WithMany()
+            .HasForeignKey(u => u.PostalCodeId)
+            .HasPrincipalKey(u => u.Id);
+
 
     }
 }

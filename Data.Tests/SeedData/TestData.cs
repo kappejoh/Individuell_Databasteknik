@@ -20,7 +20,7 @@ public static class TestData
         AddressTypeId = 1,
         AddressLine_1 = "Yrsavägen 3",
         AddressLine_2 = "Gävlegatan 11",
-        PostalCodeId = "12345"
+        PostalCodeId = 1
         }
     ];
 
@@ -67,7 +67,7 @@ public static class TestData
         Description = "Kurs i Databaser",
         StartDate = new DateTime(2025, 02, 03),
         EndDate = new DateTime(2025, 02, 28),
-        StatusNameId = 1,
+        StatusId = 1,
         CustomerId = 1,
         ProjectManagerId = 1,
         ProjectTypeId = 1,
@@ -131,7 +131,7 @@ public static class TestData
         AddressTypeId = 1,
         AddressLine_1 = "Sundsvallsgatan 22",
         AddressLine_2 = "Falugatan 11",
-        PostalCodeId = "12345"
+        PostalCodeId = 1
         }
     ];
 

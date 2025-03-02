@@ -38,7 +38,7 @@ public class ProjectRepository(DataContext context) : BaseRepository<ProjectEnti
                 .Include(x => x.ProjectManager)
                 .Include(x => x.ProjectType)
                 .Include(x => x.Status)
-                .FirstOrDefaultAsync();
+                .FirstOrDefaultAsync(expression);
             return entity;
         }
         catch (Exception ex)
@@ -46,5 +46,11 @@ public class ProjectRepository(DataContext context) : BaseRepository<ProjectEnti
             Debug.WriteLine(ex.Message);
             return null;
         }
+    }
+
+    public async Task UpdateAsync(ProjectEntity entity)
+    {
+        _context.Projects.Update(entity);  
+        await _context.SaveChangesAsync(); 
     }
 }

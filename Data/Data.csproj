@@ -7,7 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Contexts\Databases\" />
+    <Compile Remove="Contexts\Databases\**" />
+    <EmbeddedResource Remove="Contexts\Databases\**" />
+    <None Remove="Contexts\Databases\**" />
   </ItemGroup>
 
   <ItemGroup>

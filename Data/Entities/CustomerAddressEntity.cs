@@ -5,7 +5,7 @@ namespace Data.Entities;
 
 public class CustomerAddressEntity 
 {
-    [Key]
+    [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
     public int Id { get; set; }
     public int CustomerId { get; set; }
     public CustomerEntity Customer { get; set; } = null!;
@@ -13,7 +13,11 @@ public class CustomerAddressEntity
     public AddressTypeEntity AddressType { get; set; } = null!;
     public string AddressLine_1 { get; set; } = null!;
     public string? AddressLine_2 { get; set; }
-    public string PostalCodeId { get; set; } = null!;
+
+    [DatabaseGenerated(DatabaseGeneratedOption.None)]
+    public int PostalCodeId { get; set; }
     public PostalCodeEntity PostalCode { get; set; } = null!;
+
+ 
 }
 

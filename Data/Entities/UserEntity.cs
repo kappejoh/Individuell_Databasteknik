@@ -19,6 +19,6 @@ public class UserEntity
     public RoleEntity Role { get; set; } = null!;
 
     public ICollection<UserAddressEntity> UserAddresses { get; set; } = [];
-    public ICollection<ProjectEntity> Projects { get; set; } = [];
+    
 }
 

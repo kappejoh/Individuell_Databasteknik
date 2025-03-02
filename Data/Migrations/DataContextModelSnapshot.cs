@@ -42,10 +42,7 @@ namespace Data.Migrations
             modelBuilder.Entity("Data.Entities.CustomerAddressEntity", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("AddressLine_1")
                         .IsRequired()
@@ -60,11 +57,7 @@ namespace Data.Migrations
                     b.Property<int>("CustomerId")
                         .HasColumnType("int");
 
-                    b.Property<string>("PostalCodeId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("PostalCodeId1")
+                    b.Property<int>("PostalCodeId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -73,7 +66,7 @@ namespace Data.Migrations
 
                     b.HasIndex("CustomerId");
 
-                    b.HasIndex("PostalCodeId1");
+                    b.HasIndex("PostalCodeId");
 
                     b.ToTable("CustomerAddresses");
                 });
@@ -152,9 +145,6 @@ namespace Data.Migrations
                     b.Property<bool>("Paid")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("ProjectEntityId")
-                        .HasColumnType("int");
-
                     b.Property<int>("ProjectId")
                         .HasColumnType("int");
 
@@ -164,8 +154,6 @@ namespace Data.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CustomerId");
-
-                    b.HasIndex("ProjectEntityId");
 
                     b.HasIndex("ProjectId");
 
@@ -208,7 +196,7 @@ namespace Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("EndDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("date");
 
                     b.Property<int>("ProjectManagerId")
                         .HasColumnType("int");
@@ -224,12 +212,9 @@ namespace Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTime>("StartDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("date");
 
                     b.Property<int>("StatusId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("StatusNameId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -397,11 +382,7 @@ namespace Data.Migrations
                     b.Property<int>("AddressTypeId")
                         .HasColumnType("int");
 
-                    b.Property<string>("PostalCodeId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("PostalCodeId1")
+                    b.Property<int>("PostalCodeId")
                         .HasColumnType("int");
 
                     b.Property<int>("UserId")
@@ -411,7 +392,7 @@ namespace Data.Migrations
 
                     b.HasIndex("AddressTypeId");
 
-                    b.HasIndex("PostalCodeId1");
+                    b.HasIndex("PostalCodeId");
 
                     b.HasIndex("UserId");
 
@@ -451,9 +432,6 @@ namespace Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("RoleEntityId")
-                        .HasColumnType("int");
-
                     b.Property<int>("RoleId")
                         .HasColumnType("int");
 
@@ -465,8 +443,6 @@ namespace Data.Migrations
 
                     b.HasIndex("Email")
                         .IsUnique();
-
-                    b.HasIndex("RoleEntityId");
 
                     b.HasIndex("RoleId");
 
@@ -489,7 +465,7 @@ namespace Data.Migrations
 
                     b.HasOne("Data.Entities.PostalCodeEntity", "PostalCode")
                         .WithMany("CustomerAddresses")
-                        .HasForeignKey("PostalCodeId1")
+                        .HasForeignKey("PostalCodeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -519,12 +495,8 @@ namespace Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Data.Entities.ProjectEntity", null)
-                        .WithMany("Invoices")
-                        .HasForeignKey("ProjectEntityId");
-
                     b.HasOne("Data.Entities.ProjectEntity", "Project")
-                        .WithMany()
+                        .WithMany("Invoices")
                         .HasForeignKey("ProjectId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
@@ -539,31 +511,31 @@ namespace Data.Migrations
                     b.HasOne("Data.Entities.CustomerEntity", "Customer")
                         .WithMany("Projects")
                         .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Data.Entities.UserEntity", "ProjectManager")
-                        .WithMany("Projects")
+                        .WithMany()
                         .HasForeignKey("ProjectManagerId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Data.Entities.ProjectTypeEntity", "ProjectType")
-                        .WithMany("Projects")
+                        .WithMany()
                         .HasForeignKey("ProjectTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Data.Entities.ServiceEntity", "Service")
-                        .WithMany("Projects")
+                        .WithMany()
                         .HasForeignKey("ServiceId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Data.Entities.StatusEntity", "Status")
-                        .WithMany("Projects")
+                        .WithMany()
                         .HasForeignKey("StatusId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Customer");
@@ -614,7 +586,7 @@ namespace Data.Migrations
 
                     b.HasOne("Data.Entities.PostalCodeEntity", "PostalCode")
                         .WithMany()
-                        .HasForeignKey("PostalCodeId1")
+                        .HasForeignKey("PostalCodeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -633,10 +605,6 @@ namespace Data.Migrations
 
             modelBuilder.Entity("Data.Entities.UserEntity", b =>
                 {
-                    b.HasOne("Data.Entities.RoleEntity", null)
-                        .WithMany("Users")
-                        .HasForeignKey("RoleEntityId");
-
                     b.HasOne("Data.Entities.RoleEntity", "Role")
                         .WithMany()
                         .HasForeignKey("RoleId")
@@ -665,26 +633,6 @@ namespace Data.Migrations
                     b.Navigation("TaskAssignments");
                 });
 
-            modelBuilder.Entity("Data.Entities.ProjectTypeEntity", b =>
-                {
-                    b.Navigation("Projects");
-                });
-
-            modelBuilder.Entity("Data.Entities.RoleEntity", b =>
-                {
-                    b.Navigation("Users");
-                });
-
-            modelBuilder.Entity("Data.Entities.ServiceEntity", b =>
-                {
-                    b.Navigation("Projects");
-                });
-
-            modelBuilder.Entity("Data.Entities.StatusEntity", b =>
-                {
-                    b.Navigation("Projects");
-                });
-
             modelBuilder.Entity("Data.Entities.TasksEntity", b =>
                 {
                     b.Navigation("TaskAssignments");
@@ -692,8 +640,6 @@ namespace Data.Migrations
 
             modelBuilder.Entity("Data.Entities.UserEntity", b =>
                 {
-                    b.Navigation("Projects");
-
                     b.Navigation("UserAddresses");
                 });
 #pragma warning restore 612, 618

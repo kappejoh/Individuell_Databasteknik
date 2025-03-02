@@ -14,6 +14,8 @@ public class User
     public string SecurityKey { get; set; } = null!;
     public bool EmailConfirmed { get; set; }
 
+    public string DisplayName => $"{FirstName} {LastName}";
+
     public DateTime Created { get; set; }
     public DateTime Modified { get; set; }
     public Role? Role { get; set; } = null!;

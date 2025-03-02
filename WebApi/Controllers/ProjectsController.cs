@@ -2,6 +2,7 @@
 using Business.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace WebApi.Controllers;
 
@@ -16,6 +17,9 @@ public class ProjectsController(IProjectService projectService) : ControllerBase
     {
         if (!ModelState.IsValid)
             return BadRequest(ModelState);
+
+
+        Console.WriteLine("Validation Errors: " + string.Join(", "));
 
         var project = await _projectService.CreateProjectAsync(form);
         return project == null ? BadRequest() : Ok(project);
@@ -35,14 +39,14 @@ public class ProjectsController(IProjectService projectService) : ControllerBase
         return project != null ? Ok(project) : NotFound();
     }
 
-    [HttpPut]
-    public async Task<IActionResult> UpdateProject(Project project)
+    [HttpPut("{id}")]
+    public async Task<IActionResult> UpdateProject(int id, ProjectUpdate project)
     {
         if (!ModelState.IsValid)
             return BadRequest(ModelState);
 
         var updatedProject = await _projectService.UpdateProjectAsync(project);
-        return updatedProject ? Ok() : BadRequest();
+        return updatedProject != null ? Ok() : BadRequest();
     }
 
     [HttpDelete("{id}")]

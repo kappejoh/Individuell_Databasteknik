@@ -54,26 +54,40 @@ public class ProjectService(IProjectRepository projectRepository, ICustomerRepos
         return project;
     }
 
-    public async Task<bool> UpdateProjectAsync(Project project)
+    public async Task<Project?> UpdateProjectAsync(ProjectUpdate form)
     {
         try
         {
-            ArgumentNullException.ThrowIfNull(project);
+            ArgumentNullException.ThrowIfNull(form);
 
-            var projectEntity = ProjectFactory.Map(project);
+            var existingEntity = await _projectRepository.GetAsync(x => x.Id == form.Id);
 
-            if (projectEntity == null)
-                return false;
+            if (existingEntity == null)
+                return null; 
 
-            var result = await _projectRepository.UpdateAsync(projectEntity);
-            return result;
+            
+            existingEntity.ProjectName = form.ProjectName;
+            existingEntity.Description = form.Description;
+            existingEntity.StartDate = form.StartDate;
+            existingEntity.EndDate = form.EndDate;
+            existingEntity.StatusId = form.StatusId;
+            existingEntity.ProjectManagerId = form.ProjectManagerId;
+
+            
+            await _projectRepository.UpdateAsync(existingEntity);
+
+            
+            var updatedEntity = await _projectRepository.GetAsync(x => x.Id == form.Id);
+
+            return updatedEntity != null ? ProjectFactory.Map(updatedEntity) : null;
         }
         catch (Exception ex)
         {
             Debug.WriteLine(ex.Message);
-            return false;
+            return null;
         }
     }
+
 
     public async Task<bool> RemoveProjectAsync(Project project)
     {

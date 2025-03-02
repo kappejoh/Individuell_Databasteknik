@@ -17,8 +17,7 @@ public static class UserFactory
         Created = entity.Created,
         Modified = entity.Modified,
         Role = RoleFactory.Map(entity.Role),
-        UserAddresses = entity.UserAddresses,
-        Projects = entity.Projects
+
 
     };
 }
